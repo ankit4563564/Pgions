@@ -14,7 +14,9 @@ import ScheduleVisitModal from '@/components/ScheduleVisitModal';
 import { formatPrice, getPriceInsight } from '@/lib/utils';
 import { MapPin, Check, ShieldCheck, Zap, Users, ShieldAlert, BedDouble, CalendarHeart, Loader2, FileText } from 'lucide-react';
 import RentSplitter from '@/components/RentSplitter';
-import AgreementGenerator from '@/components/AgreementGenerator';
+import dynamic from 'next/dynamic';
+const AgreementGenerator = dynamic(() => import('@/components/AgreementGenerator'), { ssr: false });
+
 import styles from './page.module.css';
 
 export default function ListingPage({ params }) {
