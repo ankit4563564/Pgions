@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          String    @default("seeker")
+  accounts      Account[]
+  sessions      Session[]
+  reviews       Review[]
+  visits        VisitRequest[]
+  listings      Listing[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Listing {
+  id                String   @id @default(cuid())
+  name              String
+  type              String   
+  location          String
+  city              String
+  address           String
+  price             Int
+  deposit           Int
+  foodIncluded      Boolean  @default(false)
+  ac                Boolean  @default(false)
+  wifi              Boolean  @default(false)
+  laundry           Boolean  @default(false)
+  parking           Boolean  @default(false)
+  powerBackup       Boolean  @default(false)
+  sharing           String
+  
+  images            String   
+  rules             String   
+  amenities         String   
+  scamFlags         String   
+  nearbyPlaces      String   
+  
+  description       String
+  ownerName         String
+  ownerPhone        String?
+  ownerResponseTime String
+  ownerVerified     Boolean  @default(false)
+  trustScore        Int
+  avgRating         Float
+  totalReviews      Int
+  viewsThisWeek     Int
+  
+  ownerId           String?
+  owner             User?    @relation(fields: [ownerId], references: [id])
+  reviews           Review[]
+  visits            VisitRequest[]
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int
+  comment   String
+  createdAt DateTime @default(now())
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  
+  listingId String
+  listing   Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+}
+
+model VisitRequest {
+  id        String   @id @default(cuid())
+  date      String
+  timeSlot  String
+  status    String   @default("pending")
+  phone     String
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  
+  listingId String
+  listing   Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}

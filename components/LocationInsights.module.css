@@ -1,0 +1,70 @@
+.wrap {
+  padding: 20px;
+  background: var(--gradient-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.places {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.place {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-light);
+  transition: border-color 0.2s;
+}
+
+.place:hover {
+  border-color: var(--border-active);
+}
+
+.iconWrap {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconWrap[data-type="college"] { background: rgba(99, 102, 241, 0.15); color: var(--primary-light); }
+.iconWrap[data-type="metro"] { background: rgba(6, 182, 212, 0.15); color: var(--accent); }
+.iconWrap[data-type="hospital"] { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+.iconWrap[data-type="shopping"] { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+.iconWrap[data-type="office"] { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+
+.placeInfo {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.placeName {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.placeDistance {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(6, 182, 212, 0.1);
+}

@@ -1,0 +1,27 @@
+.ratingWrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.halfStarWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.ratingNumber {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9em;
+}
+
+.countText {
+  color: var(--text-secondary);
+  font-size: 0.85em;
+}
