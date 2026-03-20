@@ -66,7 +66,7 @@ export default function Signup() {
         }
       }
     } catch (err) {
-      setError('An expected error occurred');
+      setError('An unexpected error occurred');
     } finally {
       setIsLoading(false);
     }

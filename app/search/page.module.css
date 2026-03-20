@@ -15,16 +15,34 @@
 }
 
 .pageHeader {
-  padding: 2rem 5%;
-  border-bottom: 1px solid var(--border);
-  background-color: var(--card-bg);
+  padding: 2.5rem 5%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  background: var(--gradient-card);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle background glow for header */
+.pageHeader::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 50%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
+  pointer-events: none;
 }
 
 .pageHeader h1 {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 800;
   margin-bottom: 0.5rem;
-  color: var(--text-primary);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
 }
 
 .pageHeader p {
@@ -36,8 +54,9 @@
   display: flex;
   padding: 0 5%;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 2.5rem;
   position: relative;
+  margin-top: 2rem;
 }
 
 .sidebarWrapper {
@@ -46,15 +65,15 @@
   position: sticky;
   top: 100px;
   height: calc(100vh - 120px);
-  padding: 2rem 0;
+  padding: 0 0 2rem 0;
   z-index: 10;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--primary-dark) transparent;
+  scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
 }
 
 .sidebarWrapper::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 
 .sidebarWrapper::-webkit-scrollbar-track {
@@ -62,13 +81,13 @@
 }
 
 .sidebarWrapper::-webkit-scrollbar-thumb {
-  background: var(--primary-dark);
+  background: rgba(99, 102, 241, 0.3);
   border-radius: 10px;
 }
 
 .resultsWrapper {
   flex: 1;
-  padding: 2rem 0;
+  padding: 0 0 2rem 0;
   min-height: 50vh;
 }
 
@@ -78,8 +97,11 @@
 
 .resultsHeader h2 {
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .grid {
@@ -93,31 +115,33 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5rem 2rem;
+  padding: 6rem 2rem;
   text-align: center;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
+  background: rgba(10, 15, 30, 0.5);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-xl);
   margin-top: 1rem;
-  box-shadow: var(--shadow-md);
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
   animation: fadeIn 0.5s ease-out;
 }
 
 .emptyIconWrapper {
   width: 120px;
   height: 120px;
-  background: var(--bg-tertiary);
+  background: rgba(20, 27, 45, 0.8);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .emptyIcon {
   color: var(--primary-light);
-  opacity: 0.8;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.4));
 }
 
 .emptyState h2 {
@@ -142,34 +166,44 @@
 }
 
 .skeletonCard {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
+  background: rgba(10, 15, 30, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.03);
   border-radius: var(--radius-lg);
   overflow: hidden;
   height: 350px;
+  position: relative;
+}
+
+.skeletonCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+  animation: shimmer 2s infinite;
 }
 
 .resetBtn {
-  background: var(--primary);
+  background: var(--gradient-primary);
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 1.75rem;
   border-radius: var(--radius-md);
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px var(--primary-glow);
 }
 
 .resetBtn:hover {
-  background: var(--primary-hover);
   transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--primary-glow), 0 0 0 1px rgba(99, 102, 241, 0.3);
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 900px) {
   .content {
     flex-direction: column;
-    padding: 0; /* Removing padding so sidebar toggle spans full width if needed */
+    padding: 0;
   }
 
   .sidebarWrapper {

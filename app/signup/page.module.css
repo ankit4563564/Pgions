@@ -3,6 +3,23 @@
   display: flex;
   flex-direction: column;
   background-color: var(--background);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background glow effect */
+.container::before {
+  content: '';
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 60%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .main {
@@ -11,42 +28,61 @@
   align-items: center;
   justify-content: center;
   padding: 120px 5% 4rem;
+  position: relative;
+  z-index: 1;
 }
 
 .authWrapper {
   width: 100%;
-  max-width: 480px;
+  max-width: 440px;
 }
 
 .authCard {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 2.5rem;
-  box-shadow: var(--shadow-xl);
+  background: rgba(10, 15, 30, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(99, 102, 241, 0.1);
+  position: relative;
+}
+
+/* Subtle premium border line */
+.authCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 3rem;
+  right: 3rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
 }
 
 .header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .logoWrap {
-  width: 56px;
-  height: 56px;
-  background: var(--primary-light);
-  border-radius: var(--radius-full);
+  width: 64px;
+  height: 64px;
+  background: var(--gradient-primary);
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.25rem;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 10px 25px var(--primary-glow);
+  color: white;
 }
 
 .header h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
 }
 
 .header p {
@@ -64,13 +100,15 @@
 .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .inputGroup label {
-  font-weight: 500;
-  color: var(--text-primary);
-  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .passwordWrapper {
@@ -93,6 +131,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.2s;
+}
+
+.eyeBtn:hover {
+  color: var(--primary-light);
 }
 
 .checkboxLabel {
@@ -110,30 +153,32 @@
 }
 
 .submitBtn {
-  margin-top: 0.5rem;
-  padding: 0.875rem;
-  font-size: 1.05rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1rem;
   font-weight: 600;
+  width: 100%;
 }
 
 .divider {
   display: flex;
   align-items: center;
   text-align: center;
-  margin: 1.5rem 0;
+  margin: 1.75rem 0;
   color: var(--text-muted);
   font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .divider::before,
 .divider::after {
   content: '';
   flex: 1;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .divider span {
-  padding: 0 10px;
+  padding: 0 16px;
 }
 
 .googleBtn {
@@ -142,9 +187,19 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 0.875rem;
-  font-weight: 500;
-  background: var(--background);
+  padding: 1rem;
+  font-weight: 600;
+  background: rgba(20, 27, 45, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.googleBtn:hover {
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
 }
 
 .googleIcon {
@@ -153,7 +208,7 @@
 }
 
 .footer {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   text-align: center;
   font-size: 0.95rem;
   color: var(--text-secondary);
@@ -162,19 +217,21 @@
 .linkBtn {
   background: transparent;
   border: none;
-  color: var(--primary);
+  color: var(--primary-light);
   font-weight: 600;
   cursor: pointer;
-  padding: 0;
+  padding: 0 4px;
   font-size: 0.95rem;
+  transition: color 0.2s;
 }
 
 .linkBtn:hover {
+  color: var(--primary);
   text-decoration: underline;
 }
 
 @media (max-width: 600px) {
   .authCard {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
   }
 }

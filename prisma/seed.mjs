@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from './generated/client/index.js';
 import { listings } from '../data/listings.js';
 
 const prisma = new PrismaClient();
@@ -55,6 +55,7 @@ async function main() {
           avgRating: l.avgRating || 4.5,
           totalReviews: l.totalReviews || 12,
           viewsThisWeek: l.viewsThisWeek || 15,
+          ownerResponseRate: l.ownerResponseRate || 0,
           ownerId: owner.id,
         },
       });

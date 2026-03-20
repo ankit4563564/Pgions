@@ -85,6 +85,7 @@ model Listing {
   avgRating         Float
   totalReviews      Int
   viewsThisWeek     Int
+  ownerResponseRate Int      @default(0)
   
   ownerId           String?
   owner             User?    @relation(fields: [ownerId], references: [id])

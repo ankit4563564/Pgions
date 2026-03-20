@@ -3,7 +3,7 @@
 :root {
   /* Primary palette */
   --primary: #6366f1;
-  --primary-light: #a5b4fc; /* Lightened for better dark mode visibility */
+  --primary-light: #a5b4fc;
   --primary-dark: #4f46e5;
   --primary-glow: rgba(99, 102, 241, 0.3);
   --primary-hover: #818cf8;
@@ -21,40 +21,42 @@
   --danger: #ef4444;
   --danger-bg: rgba(239, 68, 68, 0.1);
 
-  /* Background layers - Premium Deep Dark */
-  --background: #020617; /* Slate-950 */
-  --bg-primary: #020617;
-  --bg-secondary: #0f172a; /* Slate-900 */
-  --bg-tertiary: #1e293b; /* Slate-800 */
-  --bg-card: rgba(15, 23, 42, 0.8);
-  --card-bg: rgba(15, 23, 42, 0.8);
-  --bg-card-hover: rgba(30, 41, 59, 0.9);
-  --bg-glass: rgba(2, 6, 23, 0.7);
-  --bg-input: #0f172a;
+  /* Background layers */
+  --background: #030712;
+  --bg-primary: #030712;
+  --bg-secondary: #0a0f1e;
+  --bg-tertiary: #141b2d;
+  --bg-card: rgba(10, 15, 30, 0.85);
+  --card-bg: rgba(10, 15, 30, 0.85);
+  --bg-card-hover: rgba(20, 27, 45, 0.95);
+  --bg-glass: rgba(3, 7, 18, 0.65);
+  --bg-input: #0d1321;
 
   /* Text */
-  --text-primary: #f8fafc;
+  --text-primary: #f1f5f9;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
   --text-inverse: #020617;
 
   /* Borders */
-  --border: rgba(148, 163, 184, 0.1);
-  --border-color: rgba(148, 163, 184, 0.1);
-  --border-light: rgba(148, 163, 184, 0.05);
-  --border-active: rgba(99, 102, 241, 0.4);
+  --border: rgba(148, 163, 184, 0.08);
+  --border-color: rgba(148, 163, 184, 0.08);
+  --border-light: rgba(148, 163, 184, 0.04);
+  --border-active: rgba(99, 102, 241, 0.5);
 
   /* Gradient */
-  --gradient-primary: linear-gradient(135deg, #6366f1, #06b6d4);
-  --gradient-header: linear-gradient(to bottom, rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0));
-  --gradient-card: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 1));
+  --gradient-primary: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+  --gradient-header: linear-gradient(to bottom, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0));
+  --gradient-card: linear-gradient(160deg, rgba(10, 15, 30, 0.95), rgba(3, 7, 18, 1));
+  --gradient-glow: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.08), rgba(6, 182, 212, 0.1));
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.15);
-  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.05), var(--shadow-lg);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.15);
+  --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.25), 0 2px 6px -2px rgb(0 0 0 / 0.15);
+  --shadow-lg: 0 12px 28px -4px rgb(0 0 0 / 0.3), 0 4px 8px -4px rgb(0 0 0 / 0.2);
+  --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.12), 0 0 60px rgba(99, 102, 241, 0.06);
+  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.03), var(--shadow-lg);
+  --shadow-premium: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
 
   /* Sizing */
   --radius-sm: 8px;
@@ -83,6 +85,7 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
@@ -109,10 +112,10 @@ img {
 }
 
 /* ========= SCROLLBAR ========= */
-::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: var(--primary-dark); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.5); }
 
 /* ========= UTILITY ========= */
 .container {
@@ -123,12 +126,19 @@ img {
 
 .glass {
   background: var(--bg-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient {
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -147,17 +157,24 @@ img {
   font-size: 0.95rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-primary {
   background: var(--gradient-primary);
   color: white;
-  box-shadow: 0 4px 15px var(--primary-glow);
+  box-shadow: 0 4px 20px var(--primary-glow), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px var(--primary-glow);
+  box-shadow: 0 8px 32px var(--primary-glow), 0 0 0 1px rgba(99, 102, 241, 0.3);
+  filter: brightness(1.1);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 .btn-secondary {
@@ -167,19 +184,22 @@ img {
 }
 
 .btn-secondary:hover {
-  border-color: var(--primary-light);
+  border-color: rgba(99, 102, 241, 0.3);
   background: var(--bg-card-hover);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.08);
 }
 
 .btn-outline {
   background: transparent;
   color: var(--primary-light);
-  border: 1px solid var(--primary);
+  border: 1px solid rgba(99, 102, 241, 0.3);
 }
 
 .btn-outline:hover {
-  background: var(--primary);
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--primary);
   color: white;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
 }
 
 .btn-danger {
@@ -221,7 +241,7 @@ img {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover {
@@ -244,7 +264,7 @@ img {
 
 .input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-glow);
+  box-shadow: 0 0 0 3px var(--primary-glow), 0 0 20px rgba(99, 102, 241, 0.08);
 }
 
 .input::placeholder {
@@ -332,6 +352,17 @@ img {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(99, 102, 241, 0.2); }
+  50% { border-color: rgba(99, 102, 241, 0.5); }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out forwards;
 }
@@ -352,6 +383,21 @@ img {
 .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
 .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
 
+/* ========= SPIN ANIMATION ========= */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* ========= SOFT BACKGROUND UTILITIES ========= */
+.bg-soft-primary { background: rgba(99, 102, 241, 0.1); }
+.bg-soft-accent  { background: rgba(6, 182, 212, 0.1); }
+.bg-soft-success { background: rgba(16, 185, 129, 0.1); }
+
 /* ========= STAR RATING ========= */
 .stars {
   display: inline-flex;
@@ -365,10 +411,32 @@ img {
 
 .star.filled {
   color: #fbbf24;
+  filter: drop-shadow(0 0 3px rgba(251, 191, 36, 0.3));
 }
 
 .star.interactive:hover {
   transform: scale(1.2);
+}
+
+/* ========= NOISE TEXTURE OVERLAY ========= */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* ========= RESPONSIVE ========= */

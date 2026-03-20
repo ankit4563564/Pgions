@@ -9,11 +9,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(10, 10, 26, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(3, 7, 18, 0.75);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   transition: all 0.3s ease;
+}
+
+/* Premium gradient line under navbar */
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.2), rgba(6, 182, 212, 0.3), transparent);
 }
 
 .navInner {
@@ -32,23 +43,34 @@
   font-size: 1.3rem;
   font-weight: 800;
   letter-spacing: -0.5px;
+  transition: transform 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.02);
 }
 
 .logoIcon {
   width: 36px;
   height: 36px;
   background: var(--gradient-primary);
-  border-radius: var(--radius-sm);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.1rem;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+  transition: box-shadow 0.3s ease;
+}
+
+.logo:hover .logoIcon {
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.4), 0 0 60px rgba(99, 102, 241, 0.15);
 }
 
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 .navLink {
@@ -59,11 +81,12 @@
   font-size: 0.9rem;
   transition: all 0.25s ease;
   cursor: pointer;
+  position: relative;
 }
 
 .navLink:hover {
   color: var(--text-primary);
-  background: var(--bg-tertiary);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .navLink.active {
@@ -73,6 +96,7 @@
 
 .navCta {
   margin-left: 8px;
+  border-radius: var(--radius-full) !important;
 }
 
 .mobileToggle {
@@ -96,7 +120,8 @@
     top: var(--navbar-height);
     left: 0;
     right: 0;
-    background: var(--bg-secondary);
+    background: rgba(3, 7, 18, 0.95);
+    backdrop-filter: blur(24px);
     border-bottom: 1px solid var(--border);
     padding: 16px;
     animation: fadeIn 0.3s ease;

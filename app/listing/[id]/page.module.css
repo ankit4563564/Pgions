@@ -7,11 +7,11 @@
 
 .main {
   flex: 1;
-  padding-top: 100px; /* space for fixed navbar */
+  padding-top: 100px;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
-  padding-bottom: 6rem;
+  padding-bottom: 8rem;
 }
 
 .scamBannerWrapper {
@@ -19,7 +19,7 @@
 }
 
 .header {
-  padding: 2rem 5%;
+  padding: 2.5rem 5%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -33,81 +33,82 @@
 .badgeRow {
   display: flex;
   gap: 8px;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .typeBadge, .sharingBadge {
-  padding: 4px 10px;
-  border-radius: 4px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
   font-size: 0.8rem;
   font-weight: 600;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
+  background: rgba(20, 27, 45, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .typeBadge {
-  color: var(--primary);
-  background: var(--primary-light);
-  border-color: var(--primary-light);
+  color: var(--primary-light);
+  background: rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.2);
 }
 
 .header h1 {
-  font-size: 2.25rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   line-height: 1.2;
+  letter-spacing: -0.5px;
 }
 
 .address {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 1.05rem;
 }
 
 .gallery {
   padding: 0 5%;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 12px;
-  height: 480px;
+  gap: 16px;
+  height: 500px;
 }
 
 .gallery img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var(--radius-lg);
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mainImage, .subImageWrapper, .moreImages {
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .mainImage::after, .subImageWrapper::after, .moreImages::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(2, 6, 23, 0.7) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(3, 7, 18, 0.8) 0%, transparent 50%);
   pointer-events: none;
   z-index: 1;
 }
 
 .mainImage:hover img {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 .subImages {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  gap: 12px;
+  gap: 16px;
 }
 
 .moreImages {
@@ -118,33 +119,35 @@
 .moreOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: var(--radius-lg);
+  background: rgba(10, 15, 30, 0.6);
+  backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 1.25rem;
-  font-weight: 600;
-  transition: background 0.2s;
+  font-size: 1.35rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  z-index: 2;
 }
 
 .moreOverlay:hover {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(10, 15, 30, 0.5);
+  transform: scale(1.02);
 }
 
 .contentGrid {
   padding: 0 5%;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 3rem;
+  gap: 4rem;
 }
 
 .section {
-  margin-bottom: 3rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 3.5rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .section:last-child {
@@ -152,33 +155,42 @@
 }
 
 .section h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1.25rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
   color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .description {
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.8;
   font-size: 1.05rem;
 }
 
 .amenitiesList {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
 }
 
 .amenityItem {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   color: var(--text-primary);
+  font-weight: 500;
+  padding: 10px 16px;
+  background: rgba(20, 27, 45, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-md);
 }
 
 .checkIcon {
   color: #10b981;
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.4));
 }
 
 .rulesList {
@@ -190,14 +202,16 @@
 
 .rulesList li {
   position: relative;
-  padding-left: 20px;
-  margin-bottom: 0.75rem;
+  padding: 10px 10px 10px 24px;
+  margin-bottom: 0.5rem;
+  background: rgba(20, 27, 45, 0.3);
+  border-radius: var(--radius-md);
 }
 
 .rulesList li::before {
-  content: '•';
+  content: '→';
   position: absolute;
-  left: 0;
+  left: 8px;
   color: var(--primary);
   font-weight: bold;
 }
@@ -210,34 +224,52 @@
 .bookingCard {
   position: sticky;
   top: 100px;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  box-shadow: var(--shadow-sm);
+  background: rgba(10, 15, 30, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(99, 102, 241, 0.05);
+}
+
+/* Premium gradient top border */
+.bookingCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  right: 2rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
 }
 
 .priceSection {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .priceRow {
   display: flex;
   align-items: baseline;
   gap: 6px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .priceValue {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-primary);
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
 }
 
 .priceTerm {
   color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .depositRow {
@@ -245,48 +277,53 @@
   justify-content: space-between;
   color: var(--text-secondary);
   font-size: 0.95rem;
+  padding: 10px 14px;
+  background: rgba(20, 27, 45, 0.5);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.02);
 }
 
 .depositValue {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
 .priceComparisonWrapper {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .ownerInfo {
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background: var(--background);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  background: rgba(3, 7, 18, 0.6);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .ownerHeader {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 1rem;
+  gap: 14px;
+  margin-bottom: 1.25rem;
 }
 
 .ownerAvatar {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: var(--primary-light);
-  color: var(--primary);
+  background: var(--gradient-primary);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: 700;
+  box-shadow: 0 4px 15px var(--primary-glow);
 }
 
 .ownerName {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
@@ -301,8 +338,12 @@
   align-items: center;
   gap: 8px;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-primary);
+  padding: 8px 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .unverifiedRow {
@@ -310,25 +351,32 @@
   align-items: center;
   gap: 8px;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #ef4444;
+  padding: 8px 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
 .actionBtn {
   width: 100%;
-  padding: 1rem;
+  padding: 1.1rem;
   font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 20px var(--primary-glow);
 }
 
 .scamBtn {
-  background: #ef4444 !important;
+  background: linear-gradient(135deg, #ef4444, #b91c1c) !important;
   color: white !important;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3) !important;
+  border: none !important;
 }
 
 .scamBtn:hover {
-  background: #dc2626 !important;
+  filter: brightness(1.1);
 }
 
 .actionDisclaimer {
@@ -339,41 +387,45 @@
   color: #f59e0b;
   font-size: 0.85rem;
   font-weight: 500;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 8px;
+  border-radius: var(--radius-sm);
 }
 
 .roommatePromo {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px dashed var(--border);
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
 .promoText {
-  margin: 0.5rem 0 1rem;
+  margin: 0.5rem 0 1.25rem;
 }
 
 .promoText h4 {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .promoText p {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 /* Smart Tools Section */
 .smartToolsSection {
-  padding: 4rem 5%;
-  margin-top: 2rem;
-  border-top: 1px solid var(--border);
-  background: var(--bg-primary);
+  padding: 5rem 5%;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  background: radial-gradient(ellipse at top, rgba(10, 15, 30, 0.8) 0%, var(--background) 70%);
 }
 
 .smartToolsSection .sectionHeader {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -381,72 +433,85 @@
 
 .badge {
   display: inline-flex;
-  padding: 6px 14px;
-  background: var(--primary-glow);
+  padding: 6px 16px;
+  background: rgba(99, 102, 241, 0.1);
   color: var(--primary-light);
   border-radius: var(--radius-full);
   font-size: 0.85rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
 .smartToolsSection h2 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 800;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   color: var(--text-primary);
-  letter-spacing: -0.02em;
+  letter-spacing: -1px;
 }
 
 .smartToolsSection p {
   color: var(--text-secondary);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   max-width: 600px;
+  line-height: 1.6;
 }
 
 .toolsGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 2.5rem;
   max-width: 1000px;
   margin: 0 auto;
 }
 
 .extraTools {
-  margin: 1.5rem 0;
-  padding: 1rem;
-  background: var(--bg-tertiary);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-light);
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(20, 27, 45, 0.5);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .extraTools h4 {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-primary);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .toolList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .toolItem {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
+  gap: 10px;
+  font-size: 0.9rem;
   color: var(--text-secondary);
+  padding: 8px 12px;
+  background: rgba(3, 7, 18, 0.4);
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
+}
+
+.toolItem:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary-light);
 }
 
 .toolItem svg {
-  color: var(--primary-light);
+  color: var(--primary);
 }
 
 @media (max-width: 900px) {
   .smartToolsSection h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 }

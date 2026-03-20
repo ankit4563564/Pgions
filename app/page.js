@@ -14,9 +14,9 @@ export default function Home() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <div className={styles.badge}>Pgions 1.0 is Live 🐦🚀</div>
-          <h1>Find your perfect <span className="text-gradient">Home away from Home</span></h1>
+          <h1>Find your perfect <span className="gradient-text">Home away from Home</span></h1>
           <p className={styles.subtext}>
-            Stay in verified PGs in India's top tech hubs. Secure, vetted, and backed by our proprietary **Pgions Trust Score** algorithm.
+            Stay in verified PGs in India's top tech hubs. Secure, vetted, and backed by our proprietary <strong>Pgions Trust Score</strong> algorithm.
           </p>
           
           <div className={styles.searchBar}>
