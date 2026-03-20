@@ -28,7 +28,9 @@ export async function GET(req) {
     return NextResponse.json(formattedListings);
   } catch (error) {
     console.error("LISTINGS_GET_ERROR:", error);
-    return new NextResponse(JSON.stringify({ error: error.message }), { 
+    // Return empty array to keep UI components from crashing
+    // when the API fails (e.g. missing/invalid DATABASE_URL on Vercel).
+    return NextResponse.json([], {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });

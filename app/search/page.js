@@ -22,15 +22,32 @@ export default function SearchPage() {
   
   const [dbListings, setDbListings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     const fetchListings = async () => {
       try {
         const res = await fetch('/api/listings');
+        if (!res.ok) {
+          let details = '';
+          try {
+            details = await res.text();
+          } catch {
+            // ignore
+          }
+          console.error('Failed to fetch listings', res.status, details);
+          setDbListings([]);
+          setErrorMsg('Could not load listings right now.');
+          return;
+        }
+
         const data = await res.json();
-        setDbListings(data);
+        setDbListings(Array.isArray(data) ? data : []);
+        setErrorMsg('');
       } catch (error) {
         console.error('Failed to fetch listings');
+        setDbListings([]);
+        setErrorMsg('Could not load listings right now.');
       } finally {
         setIsLoading(false);
       }
@@ -40,7 +57,7 @@ export default function SearchPage() {
   }, []);
 
   const filteredListings = useMemo(() => {
-    let result = dbListings;
+    let result = Array.isArray(dbListings) ? dbListings : [];
 
     // Search text
     if (filters.search) {
@@ -115,6 +132,12 @@ export default function SearchPage() {
           </div>
 
           <div className={styles.resultsWrapper}>
+            {errorMsg && !isLoading ? (
+              <div className={styles.emptyState}>
+                <h2>{errorMsg}</h2>
+                <p>Check your database/API configuration and try again.</p>
+              </div>
+            ) : null}
             {isLoading ? (
               <div className={styles.grid}>
                 {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -128,7 +151,7 @@ export default function SearchPage() {
                   </div>
                 ))}
               </div>
-            ) : filteredListings.length === 0 ? (
+            ) : filteredListings.length === 0 && !errorMsg ? (
               <div className={styles.emptyState}>
                 <div className={styles.emptyIconWrapper}>
                   <SearchX size={64} className={styles.emptyIcon} />
