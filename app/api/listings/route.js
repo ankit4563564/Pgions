@@ -28,11 +28,14 @@ export async function GET(req) {
     return NextResponse.json(formattedListings);
   } catch (error) {
     console.error("LISTINGS_GET_ERROR:", error);
-    // Return empty array to keep UI components from crashing
-    // when the API fails (e.g. missing/invalid DATABASE_URL on Vercel).
-    return NextResponse.json([], {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+    // Helpful error payload for the client.
+    // Keep `listings` as an array so the UI can render an empty state.
+    return NextResponse.json(
+      {
+        error: error?.message || 'Failed to fetch listings',
+        listings: [],
+      },
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    );
   }
 }

@@ -29,15 +29,17 @@ export default function SearchPage() {
       try {
         const res = await fetch('/api/listings');
         if (!res.ok) {
-          let details = '';
+          let serverError = '';
           try {
-            details = await res.text();
+            const payload = await res.json();
+            serverError = payload?.error || '';
           } catch {
-            // ignore
+            // ignore (non-JSON response)
           }
-          console.error('Failed to fetch listings', res.status, details);
+
+          console.error('Failed to fetch listings', res.status, serverError);
           setDbListings([]);
-          setErrorMsg('Could not load listings right now.');
+          setErrorMsg(serverError || 'Could not load listings right now.');
           return;
         }
 
