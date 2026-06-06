@@ -1,105 +1,101 @@
-# Pgions 🏙️✨
+# Pgions
 
-> **Modern, Premium PG Discovery & Roommate Matching Platform**
+A PG (Paying Guest) discovery and roommate matching platform built with Next.js.
 
-🌍 **Live Demo:** [https://pgions.vercel.app/](https://pgions.vercel.app/)
+## Overview
 
-![Pgions Preview](https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1200&q=80)
+Pgions addresses common challenges in the Indian rental market: trust verification, property quality assessment, and roommate compatibility. The platform includes features for property search, trust scoring, roommate matching, and rent agreement generation.
 
-Pgions (pronounced *Pigeons*) is a next-generation Coliving and PG search engine built to solve urban living's biggest pain points: **Trust, Quality, and Compatibility.** 
+## Features
 
-Built with a stunning **Glassmorphic Design System**, deep gradients, and highly interactive UI components, Pgions provides an unparalleled, premium user experience compared to traditional listing sites.
+- **Vibe-Match Compatibility Engine**: Lifestyle-based roommate matching algorithm considering sleep schedules, work-from-home preferences, and social behavior
+- **Z-Scam Shield**: Multi-parameter verification system for property owners and listings to prevent rental scams
+- **Property Search**: Filter and search PG listings by location, amenities, and price
+- **Rent Agreement Generator**: PDF generation for rental agreements using jsPDF
+- **Rent Split Calculator**: Fair rent distribution tool for shared accommodations based on room features
+- **Visit Scheduling**: In-app scheduling for property visits
 
----
+## Tech Stack
 
-## 🌟 Key Features
+- **Frontend**: Next.js 15 (App Router), React 19
+- **Styling**: CSS Modules with custom design tokens
+- **Authentication**: NextAuth.js (Google OAuth + credentials)
+- **Database**: Prisma ORM with PostgreSQL
+- **PDF Generation**: jsPDF
+- **Icons**: Lucide React
 
-### 💎 Premium Glassmorphic UI/UX
-A beautiful, highly-polished user interface featuring dynamic gradient orbs, frosted glass components, subtle SVG noise texturing, and buttery-smooth animations. Designed to look and feel like a top-tier modern startup product.
+## Project Structure
 
-### 🧬 Vibe-Match Algorithm
-Don't just choose a room; choose your community. Pgions calculates a **Compatibility Score** based on lifestyle habits (Quiet vs. Social, Night Owl vs. Early Bird, WFH friendly).
+```
+Pgions/
+├── app/                  # Next.js App Router pages and API routes
+│   ├── api/              # REST API endpoints
+│   ├── listing/          # Property detail pages
+│   ├── search/           # Search and filter interface
+│   └── roommate/         # Roommate matching feature
+├── components/           # Reusable UI components
+├── data/                 # Static data fallback
+├── lib/                  # Utility functions
+├── prisma/               # Database schema and migrations
+└── public/               # Static assets
+```
 
-### 🛡️ Z-Scam Shield
-In a market filled with fake listings, the **Pgions Shield** marks verified properties with a Trust Score algorithm.
+## Getting Started
 
-### 💸 "Fair Share" Rent Splitter
-Built-in smart calculator for shared rooms. Toggle perks like "Window Bed" or "Attached Washroom" to mathematically calculate the fair rent share for each roommate.
+### Prerequisites
 
-### 📜 1-Click AI Rent Agreement
-Generate professional, legal-grade Rent Agreement PDFs instantly by entering basic tenant and owner details. Built-in **jsPDF** integration.
+- Node.js 18+
+- npm or yarn
 
----
+### Installation
 
-## 🛠️ Tech Stack
-
-- **Framework**: [Next.js 15+](https://nextjs.org/) (App Router, Server Actions)
-- **Styling**: Vanilla CSS Modules with custom Glassmorphism tokens
-- **Authentication**: [NextAuth.js](https://next-auth.js.org/) (Google & Credentials)
-- **Database Architecture**: Flexible Data Layer (Static JSON for Vercel edge delivery, or [Prisma ORM](https://www.prisma.io/) with PostgreSQL/SQLite)
-- **Icons**: [Lucide React](https://lucide.dev/)
-
----
-
-## 🚀 Local Development
-
-To run Pgions locally on your machine:
-
-### 1. Clone the repository
+1. Clone the repository
 ```bash
 git clone https://github.com/ankit4563564/Pgions.git
 cd Pgions
 ```
 
-### 2. Install dependencies
+2. Install dependencies
 ```bash
 npm install
 ```
 
-### 3. Setup Environment Variables
-Create a `.env` file in the root directory:
+3. Set up environment variables
+Create a `.env` file:
 ```env
-# Change this to your database URL if using Prisma, otherwise the app falls back to local JSON data.
 DATABASE_URL="file:./prisma/dev.db"
-NEXTAUTH_SECRET="your-super-secret-key-123"
+NEXTAUTH_SECRET="your-secret-key"
 NEXTAUTH_URL="http://localhost:3000"
 ```
 
-### 4. Run the development server
+4. Initialize the database
+```bash
+npx prisma generate
+npx prisma db push
+```
+
+5. Run the development server
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
----
+## Deployment
 
-## 📂 Project Structure
+The application is deployed on Vercel: [https://pgions.vercel.app/](https://pgions.vercel.app/)
 
-A clean, maintainable Next.js App Router architecture:
+## Key Implementation Details
 
-```
-Pgions/
-├── app/                  # Next.js App Router (Pages, Layouts, API routes)
-│   ├── api/              # Backend endpoints (Listings, Auth)
-│   ├── listing/          # Dynamic property detail pages
-│   └── search/           # Filterable search experience
-├── components/           # Reusable UI components (Glass cards, Navbar, Footer)
-├── data/                 # Static data layer (fallback DB)
-├── lib/                  # Utility functions and Prisma client
-├── prisma/               # Database schemas and seed scripts
-└── public/               # Static assets
-```
+### Trust Score Algorithm
+The trust score evaluates properties across 20+ parameters including owner verification history, tenant reviews, listing consistency, and response times.
 
----
+### Compatibility Matching
+Roommate matching uses a weighted scoring system based on lifestyle preferences, budget alignment, and schedule compatibility.
 
-## 🤝 Contributing
+### Flexible Data Layer
+The application supports both static JSON data for quick deployment and Prisma-connected databases for production use cases.
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**. Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for details.
+## License
 
-## 📜 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-*Created with ❤️ for a seamless PG experience.*
+MIT License - see LICENSE file for details.
